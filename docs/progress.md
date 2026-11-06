@@ -523,7 +523,10 @@ pending.
   `CONTRIBUTING.md`, a documentation index, and a CI workflow.
 - Moved design, roadmap, and progress docs under `docs/`; removed maintainer-only
   repository-history notes from the public docs.
-- Python tests pass (67); Python and JavaScript syntax checks pass.
+- Replaced two nullable collection filters with Dart null-aware elements so
+  `flutter analyze` reports no issues.
+- Python tests pass (67); Python and JavaScript syntax checks pass. Flutter
+  analyze and tests pass.
 
 ## Remaining / future
 

@@ -1023,7 +1023,7 @@ class _TimerRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final values = <int>{...options.keys, if (value != null) value!}.toList()
+    final values = <int>{...options.keys, ?value}.toList()
       ..sort();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),

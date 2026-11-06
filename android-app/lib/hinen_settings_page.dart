@@ -414,7 +414,7 @@ class _DropdownRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final values = <int>{...options, if (value != null) value!}.toList()..sort();
+    final values = <int>{...options, ?value}.toList()..sort();
     return ListTile(
       leading: Icon(icon, color: const Color(0xFF8FB4A8), size: 21),
       title: Text(title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
