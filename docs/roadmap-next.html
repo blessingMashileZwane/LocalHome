@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LocalHome — What to Build Next</title>
+<style>
+  :root{--bg:#07110e;--panel:#0d1b17;--line:#24443a;--ink:#eaf6f1;--muted:#8fb4a8;--mint:#9af0bd;--amber:#ffd479;--rose:#ff9b9b;--violet:#c7b6ff;--display:Georgia,'Times New Roman',serif;--mono:'SFMono-Regular',Consolas,'Liberation Mono',monospace;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(900px 500px at 85% -10%,#12362a 0,transparent 60%),var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55}
+  a{color:var(--mint)}.wrap{max-width:1180px;margin:0 auto;padding:28px 22px 80px}
+  header{padding:46px 0 28px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mint)}
+  h1{font-family:var(--display);font-size:clamp(38px,7vw,72px);font-weight:400;line-height:.98;margin:14px 0 16px;letter-spacing:-.02em}h1 em{color:var(--mint);font-style:italic}
+  .lede{max-width:760px;color:#c3d8cf;font-size:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.chip{border:1px solid var(--line);background:#0a1713;border-radius:999px;padding:6px 11px;font-family:var(--mono);font-size:10px;color:#b9d6ca;letter-spacing:.04em}.chip b{color:var(--ink);font-weight:600}
+  .top{border:1px solid var(--line);background:linear-gradient(180deg,#0e211a,#0a1612);border-radius:24px;padding:26px;margin:30px 0 42px;display:grid;grid-template-columns:1.25fr .75fr;gap:26px}
+  @media(max-width:760px){.top{grid-template-columns:1fr}}
+  .top h2{font-family:var(--display);font-weight:400;font-size:30px;margin:0 0 8px}.top p{color:#bdd5cb;margin:0 0 16px;font-size:14px}.top ol{margin:0;padding-left:20px}.top li{margin:0 0 10px;font-size:14px}.top li b{color:var(--mint)}
+  .mini{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+  .hero-card{background:#081511;border:1px solid var(--line);border-radius:18px;padding:14px}
+  .widget{background:#101f1a;border:1px solid #2b4b40;border-radius:18px;padding:13px}.widget-top{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--muted);font-family:var(--mono)}
+  .widget-main{display:flex;gap:13px;align-items:center;margin:10px 0 12px}.ring{width:54px;height:54px;border-radius:50%;background:conic-gradient(var(--mint) 0 100%,#1f3a31 100%);display:grid;place-items:center;position:relative;flex:none}.ring:after{content:'';position:absolute;inset:7px;border-radius:50%;background:#0c1a15}.ring span{position:relative;z-index:1;font-weight:700;font-size:15px;color:var(--mint)}.widget-main strong{font-size:19px;display:block;line-height:1.1}.widget-main small{color:var(--muted);font-size:10px}
+  .thumbs{display:flex;gap:6px}.thumb{height:44px;flex:1;border-radius:8px;background:linear-gradient(135deg,#1b3a2d,#2b5a44 50%,#6f8e7e);border:1px solid #325846;position:relative;overflow:hidden}.thumb:after{content:'LIVE';position:absolute;left:5px;top:4px;font:8px var(--mono);color:#eafff2;background:#06110c99;padding:1px 3px;border-radius:3px}
+  .aqi{display:flex;justify-content:space-between;margin-top:9px;padding-top:8px;border-top:1px solid #213b31;font-size:10px;color:var(--muted)}.aqi b{color:var(--mint);font-family:var(--mono)}
+  nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg),var(--bg) 70%,transparent);padding:12px 0}nav.toc a{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:#a9c5ba;border:1px solid var(--line);padding:5px 9px;border-radius:999px;background:#0a1713}nav.toc a:hover{color:var(--ink);border-color:var(--mint)}
+  section.part{margin:46px 0 0}.part-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px}.part-head h2{font-family:var(--display);font-weight:400;font-size:32px;margin:0}.part-head p{margin:0;color:var(--muted);font-size:12px}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}@media(max-width:800px){.grid{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);background:linear-gradient(180deg,#0d1d18,#091510);border-radius:18px;padding:17px 17px 14px;display:flex;flex-direction:column;min-height:0}.card:hover{border-color:#3f6c5b}
+  .card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.num{font:11px var(--mono);color:#6c9284}.tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}.tag{font:9px var(--mono);letter-spacing:.05em;text-transform:uppercase;border:1px solid #2d5043;border-radius:999px;padding:2px 6px;color:#a9c8ba;white-space:nowrap}.tag.high{color:#9af0bd;border-color:#3d725c}.tag.medium{color:var(--amber);border-color:#6a5630}.tag.careful{color:var(--rose);border-color:#6b3b3b}.tag.exp{color:var(--violet);border-color:#4e4270}
+  .card h3{font-family:var(--display);font-weight:400;font-size:23px;line-height:1.08;margin:12px 0 7px}.card p{margin:0;color:#b9d0c7;font-size:13px}.card .why{color:#d7e7df;font-size:13px;margin:8px 0 0}.card .first{margin-top:auto;padding-top:12px;border-top:1px solid #1d362d;font-size:11px;color:var(--muted)}.card .first b{color:#cfe6dc;font-weight:600}.wide{grid-column:1/-1}
+  .callout{border:1px solid #3d725c;background:linear-gradient(180deg,#102b21,#0b1a14);border-radius:20px;padding:22px;margin:22px 0}.callout h3{font-family:var(--display);font-weight:400;font-size:26px;margin:0 0 8px}.callout p{color:#c8ded5;margin:0;font-size:14px}.callout .accent{color:var(--mint)}
+  .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:16px}@media(max-width:760px){.roadmap{grid-template-columns:1fr}}.step{background:#0b1915;padding:16px}.step .mini{margin-bottom:7px}.step h4{margin:0 0 6px;font-size:14px}.step p{margin:0;color:var(--muted);font-size:11px}
+  .no{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}@media(max-width:700px){.no{grid-template-columns:1fr}}.no div{border-left:2px solid #6b3b3b;padding:2px 0 2px 12px;color:#c6d5cf;font-size:12px}.no b{color:#ffc2c2;font-family:var(--mono);font-size:11px;display:block;margin-bottom:2px}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);color:#6f9285;font-size:11px;font-family:var(--mono)}.src{color:#7c9d90;font-size:10px;margin-top:10px}
+  @media print{body{background:#fff;color:#111}.card,.top,.callout,.roadmap{background:#fff;border-color:#ccc}.lede{color:#444}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">LocalHome / product notes / 2026-11-03</div>
+    <h1>What we build <em>next</em></h1>
+    <p class="lede">A full pass over the camera, Xiaomi, PS300 and Android layers produced a shortlist of local-first features. The filter: no fake readings, no silent cloud, no new dependency on a vendor cloud app, and no unattended mains switching without a safety case.</p>
+    <div class="chips"><span class="chip"><b>3</b> tabs shipped</span><span class="chip"><b>1</b> host bridge</span><span class="chip"><b>0</b> local charge-limit DP</span><span class="chip">Android tile + notification live</span></div>
+  </header>
+
+  <div class="top">
+    <div>
+      <div class="mini">The shortlist</div>
+      <h2>Build the loop, not another screen.</h2>
+      <p>The strongest next move is to make LocalHome remember, explain, and act on what it already sees. Three pieces compound:</p>
+      <ol>
+        <li><b>Energy timeline + runtime forecast.</b> Store DP 1 / 6 / 7 / 117 / 116 locally; show a sparkline, watt-hours, and “at this load: 4h 12m”. No cloud input is needed.</li>
+        <li><b>Android home-screen widget.</b> One 4×2 Glance widget: battery ring, output watts, AQI, two camera thumbnails; tap a block to deep-link into the exact camera or station.</li>
+        <li><b>Reliability center.</b> Last-known values with age, transport reason, host-bridge health, and one-tap restart. Never show “station unavailable” again when only the bridge died.</li>
+      </ol>
+    </div>
+    <div class="hero-card">
+      <div class="mini" style="margin-bottom:8px">Concept / home widget</div>
+      <div class="widget">
+        <div class="widget-top"><span>LOCALHOME · 13:25</span><span>LOCAL ONLY</span></div>
+        <div class="widget-main"><div class="ring"><span>100</span></div><div><strong>5.1 kWh</strong><small>1 W out · 1 pack</small></div></div>
+        <div class="thumbs"><div class="thumb"></div><div class="thumb"></div></div>
+        <div class="aqi"><span>PM2.5 <b>12</b> · Good</span><span>PS300 · AC off</span></div>
+      </div>
+      <div class="mini" style="margin-top:10px">The widget is the “one card” — the tile sheet remains the quick control surface.</div>
+    </div>
+  </div>
+
+  <nav class="toc"><a href="#quick">Quick wins</a><a href="#big">Big bets</a><a href="#exp">Experiments</a><a href="#no">Not building</a><a href="#plan">Suggested order</a></nav>
+
+  <section class="part" id="quick">
+    <div class="part-head"><h2>Quick wins</h2><p>High confidence, local, small surface area. Good for one focused pass.</p></div>
+    <div class="grid">
+      <article class="card"><div class="card-top"><span class="num">01</span><div class="tags"><span class="tag high">local</span><span class="tag">medium</span></div></div><h3>Energy timeline &amp; runtime forecast</h3><p>SQLite samples from the host bridge; 5-minute buckets, 30-day retention. Chart battery, output watts, AC/DC state and pack count. Forecast runtime from the recent median load, not a made-up graph.</p><p class="why">Turns the station from a live gauge into a planning tool. Also gives the notification a sparkline and the widget a real history.</p><div class="first"><b>First slice:</b> write a <code>hinen_samples</code> table, a 24h sparkline on the Energy detail, and “at current load: —” when DP 117 is missing.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">02</span><div class="tags"><span class="tag high">local</span><span class="tag">medium</span></div></div><h3>Home-screen widget</h3><p>Glance 4×2 with an energy ring, live output, AQI, and two camera snapshots. Deep links: <code>localhome://energy</code>, <code>localhome://camera/&lt;id&gt;</code>, <code>localhome://xiaomi/&lt;id&gt;</code>. No keys or tokens in the widget.</p><p class="why">The tile is hidden in Quick Settings and the notification is easy to dismiss. A widget is the glanceable surface the app is missing.</p><div class="first"><b>First slice:</b> static snapshot from cached state + deep links; add periodic refresh after reliability work.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">03</span><div class="tags"><span class="tag high">local</span><span class="tag">small</span></div></div><h3>Reliability center</h3><p>One diagnostics screen that says which layer failed: host reachable, bridge healthy, Tuya TCP open, station replied, stored key matches, last successful read age. Add “Restart bridge” and copy-diagnostics.</p><p class="why">“Station unavailable” is the most expensive false alarm. Explain it once and the app feels much more trustworthy.</p><div class="first"><b>First slice:</b> cache last-known status with timestamp; show “last known 4 min ago” before any error.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">04</span><div class="tags"><span class="tag high">local</span><span class="tag careful">confirm mains</span></div></div><h3>Scene cards</h3><p>Night, Away, Power-save and Storm-prep. Each scene is an explicit list of local writes: e.g. AC/DC off, light Low, purifier Sleep, camera floodlight Auto. Show a before/after diff and require confirmation for any mains change.</p><p class="why">The app has the primitives; scenes make them feel like a home instead of three device pages.</p><div class="first"><b>First slice:</b> read-only “preview scene” first, then manual-confirm execution with an audit entry.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">05</span><div class="tags"><span class="tag high">local</span><span class="tag">small</span></div></div><h3>Notification 2.0</h3><p>Keep the ongoing PS300 card, then add: AQI band and purifier mode, camera offline/last-seen, battery-low and pack-offline alerts, and per-action deep links. Use Android live-update progress for runtime.</p><p class="why">Notifications are already the most-used native surface. More context, fewer taps.</p><div class="first"><b>First slice:</b> AQI + camera offline rows, grouped under LocalHome; no new permissions.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">06</span><div class="tags"><span class="tag high">local</span><span class="tag">medium</span></div></div><h3>Camera snapshots in the tile sheet</h3><p>Each camera block gets a last-frame thumbnail, online badge and direct deep link. Refresh on sheet open only; no background decoding, no cloud, no credential exposure.</p><p class="why">“Which camera is which?” becomes obvious; the tile sheet becomes a real home overview.</p><div class="first"><b>First slice:</b> cached JPEG from the viewer + a “snapshot age” label; tap opens the single-camera viewer.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">07</span><div class="tags"><span class="tag high">local</span><span class="tag">small</span></div></div><h3>Local audit log</h3><p>Every write: timestamp, device, DP, old → new, confirmation, read-back result, caller (manual/widget/scene). Store locally; export CSV; delete-all control.</p><p class="why">The safety boundary becomes visible. Also the foundation for any automation or family permission later.</p><div class="first"><b>First slice:</b> append to SQLite in <code>write_tuya_dp</code>; show the last 50 in Settings.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">08</span><div class="tags"><span class="tag high">local</span><span class="tag careful">security</span></div></div><h3>Bridge trust layer</h3><p>The bridge currently has no auth. Add a per-install bearer token (stored host-side, paired by QR), request rate limits, a write audit, and bind to the private interface only. Optional HTTPS with a local cert later.</p><p class="why">Before widgets, scenes, or a PWA wall dashboard, the bridge needs a door lock — even on a trusted LAN.</p><div class="first"><b>First slice:</b> token in the host env and app secure storage; reject unauthenticated writes; keep reads behind the same token.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">09</span><div class="tags"><span class="tag high">local</span><span class="tag">small</span></div></div><h3>QR onboarding</h3><p>A QR code from the host panel carries the bridge URL, a short-lived pairing secret, and the station address. The app scans it, tests the path, and finishes setup without hand-typing IPs or copying keys.</p><p class="why">The current setup is fragile by design (private IP + key + bridge). This makes it feel intentional.</p><div class="first"><b>First slice:</b> QR with bridge URL + address + health check; no local key in the QR.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">10</span><div class="tags"><span class="tag high">local</span><span class="tag">small</span></div></div><h3>Air-quality &amp; filter notebook</h3><p>Log PM2.5, mode and fan speed locally. Show a 24h AQI sparkline and a filter-life estimate based on runtime, with a “replace soon” local reminder. No Xiaomi cloud.</p><p class="why">The purifier already has the data; a notebook makes it useful and pairs naturally with the energy timeline.</p><div class="first"><b>First slice:</b> one table, one chart, one filter-hours field; export JSON.</div></article>
+    </div>
+  </section>
+
+  <section class="part" id="big">
+    <div class="part-head"><h2>Big bets</h2><p>Higher effort, higher payoff. Each needs a prototype and a safety or protocol review before it ships.</p></div>
+    <div class="grid">
+      <article class="card wide"><div class="card-top"><span class="num">11</span><div class="tags"><span class="tag medium">large</span><span class="tag careful">mains safety</span></div></div><h3>Local automation engine</h3><p>A rule builder for triggers (time, sunrise/sunset, battery %, AQI, camera online, phone arrival), conditions, and actions (notify, scene, single DP write). Run on the host bridge so it works when the phone is away. Include dry-run, a plain-language preview, an audit trail, and a “never unattended mains” switch.</p><p class="why">This is the difference between a remote control and a home system. It is also the highest-risk feature in the repo.</p><div class="first"><b>First slice:</b> notifications only — “if battery &lt; 20% → notify”, “if AQI &gt; 75 for 10 min → notify” — no writes. Then manual-confirm scenes. Unattended AC/DC switching gets a separate safety review.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">12</span><div class="tags"><span class="tag medium">large</span><span class="tag high">privacy</span></div></div><h3>On-device camera intelligence</h3><p>Person / vehicle / package detection on RTSP frames or snapshots, with zones, cooldowns, and a local notification containing a thumbnail. Everything runs on the phone or host; no frames leave the LAN.</p><p class="why">The V380 cameras are dumb but local. On-device detection adds the one feature people still open cloud camera apps for.</p><div class="first"><b>First slice:</b> snapshot every N seconds from one camera, run a small detector on the host, write an event row; no continuous video.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">13</span><div class="tags"><span class="tag medium">large</span><span class="tag high">local</span></div></div><h3>Local NVR / camera timeline</h3><p>Record RTSP segments to a NAS or phone-managed SD folder, index them locally, and add a timeline with motion markers. Encrypt at rest; retention policies; no cloud.</p><p class="why">SD-card search/playback is still the biggest camera gap. A local NVR is more useful than the vendor's cloud reel and keeps the privacy promise.</p><div class="first"><b>First slice:</b> one camera, 60-second segments, a date picker, local playback — no motion index yet.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">14</span><div class="tags"><span class="tag medium">large</span><span class="tag careful">permissions</span></div></div><h3>Family roles &amp; guest mode</h3><p>Local profiles with roles: viewer, operator, admin. A time-boxed guest QR that opens only cameras or only the energy gauge. Every action lands in the audit log. No cloud account.</p><p class="why">The app already runs on two phones. Roles make it safe to hand to family or a housesitter without giving away mains control.</p><div class="first"><b>First slice:</b> read-only guest link to the tile sheet; no writes; expiry after 24h.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">15</span><div class="tags"><span class="tag medium">large</span><span class="tag">protocol</span></div></div><h3>Home Assistant / MQTT bridge</h3><p>Expose PS300 sensors and controls, purifier state, and camera availability through local MQTT discovery. Keep cameras as RTSP streams, not through the bridge. This is the clean path to dashboards and voice assistants without Xiaomi's closed hub.</p><p class="why">An existing HA install can add automations, charts, and voice; LocalHome remains the phone app. It is a better use of time than fighting Smart Hub.</p><div class="first"><b>First slice:</b> read-only MQTT topics for battery, output, AQI; confirm discovery; writes later behind the audit.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">16</span><div class="tags"><span class="tag medium">large</span><span class="tag high">local</span></div></div><h3>PWA wall dashboard</h3><p>A kiosk view on the host panel for a tablet: energy flow, 24h charts, camera thumbnails, air quality, and scene buttons. Installable PWA; no cloud; local-only URLs; PIN for writes.</p><p class="why">The host panel already exists. A wall dashboard is a visible, useful artifact for the whole home — and a good test of the bridge trust layer.</p><div class="first"><b>First slice:</b> read-only dashboard with the existing endpoints; no control buttons until auth lands.</div></article>
+    </div>
+  </section>
+
+  <section class="part" id="exp">
+    <div class="part-head"><h2>Experiments</h2><p>Cheap to try, uncertain to keep. Prototype behind a flag; measure battery, latency, and usefulness.</p></div>
+    <div class="grid">
+      <article class="card"><div class="card-top"><span class="num">17</span><div class="tags"><span class="tag exp">experiment</span><span class="tag">on-device</span></div></div><h3>Ask LocalHome</h3><p>A local voice/text command surface: “How much battery?”, “Turn the light low”, “What's the air quality?” Use Android's on-device speech and a small intent grammar; queue a confirmation for writes. No audio leaves the phone.</p><p class="why">A genuinely local assistant is a strong demo — and the grammar is small because the action set is small.</p><div class="first"><b>First slice:</b> text commands first, no microphone; show the parsed intent and ask before writing.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">18</span><div class="tags"><span class="tag exp">experiment</span><span class="tag">sensors</span></div></div><h3>Phone-as-a-sensor presence</h3><p>Use Wi-Fi network, charging state, ambient light and motion to suggest “home / away / night”. No location cloud. Feed suggestions into scenes; never auto-toggle mains on a guess.</p><p class="why">Most presence products are cloud geofences. A local, explainable “home” signal is more privacy-friendly and easier to trust.</p><div class="first"><b>First slice:</b> a suggestion chip on the dashboard, with “why” and a dismiss button.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">19</span><div class="tags"><span class="tag exp">experiment</span><span class="tag">insights</span></div></div><h3>Anomaly insights</h3><p>Learn a baseline for output watts, battery drain and AQI; surface “unusual for this time” with the underlying samples. Explainable, dismissible, no automatic action.</p><p class="why">A small local model could catch a failing fridge, a stuck purifier or an unexpected load — without a cloud analytics pipeline.</p><div class="first"><b>First slice:</b> z-score over a 7-day same-hour baseline; one card, one “why” sheet.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">20</span><div class="tags"><span class="tag exp">experiment</span><span class="tag">camera</span></div></div><h3>Daily camera recap</h3><p>One locally generated “today at the gate” clip or contact sheet from snapshots, with motion markers and a timestamp. Export or share manually; no upload.</p><p class="why">A tiny, delightful use of the existing RTSP path; also a good stress test for local storage and retention.</p><div class="first"><b>First slice:</b> one snapshot per 10 minutes, a 6×4 contact sheet, local share sheet.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">21</span><div class="tags"><span class="tag exp">experiment</span><span class="tag">wear</span></div></div><h3>Wear OS glance</h3><p>A battery/purifier complication and a tile with “AC off / DC off / battery 100%”. Actions require a confirmation; the watch never stores keys.</p><p class="why">The most personal glanceable surface; low effort if the phone already has the data layer.</p><div class="first"><b>First slice:</b> read-only complication; no actions until the bridge trust layer ships.</div></article>
+
+      <article class="card"><div class="card-top"><span class="num">22</span><div class="tags"><span class="tag exp">experiment</span><span class="tag">battery</span></div></div><h3>Battery health notebook</h3><p>Track full-charge capacity estimates, pack count, charge/discharge cycles and time at 100%. Label estimates clearly; never invent a temperature or a cycle count the station does not report.</p><p class="why">A 5.1 kWh investment deserves a health record. The honest version is more valuable than a fake “battery score”.</p><div class="first"><b>First slice:</b> log SOC, pack count and output over time; show “no temperature sensor exposed locally”.</div></article>
+    </div>
+  </section>
+
+  <div class="callout"><h3>The one I’d build first</h3><p><span class="accent">The history loop.</span> A sample table unlocks the sparkline, the runtime forecast, the widget, the notification progress, and the audit log. It is local, low-risk, and makes every other surface better. Build that before another control.</p></div>
+
+  <section class="part" id="no">
+    <div class="part-head"><h2>Not building</h2><p>Explicit no's are part of the product. These are not “later”; they are closed unless the verified behavior changes.</p></div>
+    <div class="no">
+      <div><b>CHARGE / DISCHARGE LIMIT</b>Not in the local DP set. You chose Smart Life for this; keep the row read-only and honest.</div>
+      <div><b>XIAOMI SMART HUB CARD</b>Closed to third-party apps. The tile + notification are the working native path; a Matter bridge is a separate project.</div>
+      <div><b>ANDROID DEVICE CONTROLS</b>Broken on HyperOS 3 / Android 16 on the target phone. Do not build the UX around it.</div>
+      <div><b>FAKE ENERGY DATA</b>No per-camera Wh, no temperature, no solar/car-charge history from the local DPs. A blank is better than a lie.</div>
+      <div><b>SILENT CLOUD FALLBACK</b>No Smart Life account session in the app, no key in the APK, no cloud retry when the LAN path fails.</div>
+      <div><b>PUBLIC BRIDGE</b>No port-forwarding or public bind. If remote access is needed, use a private overlay such as Tailscale, not an exposed panel.</div>
+    </div>
+  </section>
+
+  <section class="part" id="plan">
+    <div class="part-head"><h2>Suggested order</h2><p>Small, compounding steps. Each step should leave the app usable if the next one is delayed.</p></div>
+    <div class="roadmap">
+      <div class="step"><div class="mini">Pass 1</div><h4>Trust</h4><p>Last-known cache, diagnostics, bridge health, write audit. Fix the false “unavailable” class of bugs.</p></div>
+      <div class="step"><div class="mini">Pass 2</div><h4>History</h4><p>SQLite samples, 24h sparkline, runtime forecast, purifier AQI notebook.</p></div>
+      <div class="step"><div class="mini">Pass 3</div><h4>Glance</h4><p>Home widget, notification 2.0, camera thumbnails in the tile sheet.</p></div>
+      <div class="step"><div class="mini">Pass 4</div><h4>Act</h4><p>Manual-confirm scenes, audit-visible actions, then notifications-only automation.</p></div>
+    </div>
+    <p class="src">After that: camera AI / NVR, family roles, MQTT bridge, wall dashboard. Revisit unattended mains automation only after the safety review in <code>idea-v3-hinen-ps300.md</code>.</p>
+  </section>
+
+  <footer>LocalHome / build-next / generated from the current README, idea-v3 feature matrix and the shipped app. No credentials or private addresses are included.</footer>
+</div>
+</body>
+</html>

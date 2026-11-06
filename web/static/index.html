@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LocalHome — Web Panel</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>LocalHome</h1>
+        <p>Local camera test panel · no cloud</p>
+      </header>
+
+      <section class="card">
+        <h2>Camera</h2>
+        <div class="fields">
+          <label>
+            Private IPv4
+            <input id="ip" inputmode="decimal" autocomplete="off" placeholder="192.168.1.100" />
+          </label>
+          <label>
+            LAN password (QR field 8)
+            <input id="password" type="password" autocomplete="off" placeholder="not stored" />
+          </label>
+          <label>
+            RTSP path
+            <input id="path" autocomplete="off" placeholder="/live/ch00_0" />
+          </label>
+        </div>
+        <div class="row">
+          <button id="statusBtn" type="button">Read light state</button>
+          <button id="snapshotBtn" type="button">Snapshot</button>
+          <button id="streamBtn" type="button">Start live</button>
+          <button id="stopStreamBtn" type="button">Stop live</button>
+        </div>
+        <p id="message" class="message" role="status"></p>
+      </section>
+
+      <div class="grid">
+        <section class="card">
+          <h2>Light</h2>
+          <div class="row">
+            <button class="light" data-light="on" type="button">ON</button>
+            <button class="light" data-light="auto" type="button">AUTO</button>
+            <button class="light" data-light="off" type="button">OFF</button>
+          </div>
+          <p class="state">State: <strong id="lightState">unknown</strong></p>
+          <p class="hint">ON keeps the light on; AUTO follows the camera light sensor; OFF keeps it off.</p>
+        </section>
+
+        <section class="card">
+          <h2>PTZ</h2>
+          <div class="dpad">
+            <button data-ptz="up" class="up" type="button" aria-label="Tilt up">▲</button>
+            <button data-ptz="left" class="left" type="button" aria-label="Pan left">◀</button>
+            <button data-ptz="stop" class="stop" type="button" aria-label="Stop">■</button>
+            <button data-ptz="right" class="right" type="button" aria-label="Pan right">▶</button>
+            <button data-ptz="down" class="down" type="button" aria-label="Tilt down">▼</button>
+          </div>
+          <p class="hint">Hold a direction to move; release to stop.</p>
+        </section>
+      </div>
+
+      <section class="card">
+        <h2>Live view</h2>
+        <div class="video-wrap">
+          <img id="live" alt="Camera live view" />
+        </div>
+        <p class="hint">The preview is RTSP converted locally by ffmpeg. It stays on the private LAN.</p>
+      </section>
+
+      <section class="card">
+        <h2>Local DVR</h2>
+        <div class="row">
+          <button id="dvrStartBtn" type="button">Start recording</button>
+          <button id="dvrStopBtn" type="button">Stop</button>
+          <button id="dvrRefreshBtn" type="button">Refresh</button>
+        </div>
+        <p class="hint">
+          Records the live RTSP stream to this machine. Select a clip below to
+          play or scrub it.
+        </p>
+        <ul id="dvrList" class="dvr-list"></ul>
+        <video id="dvrPlayer" controls playsinline></video>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

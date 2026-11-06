@@ -1,0 +1,8 @@
+# Web panels and helper scripts
+cryptography>=41
+
+# Optional integrations, installed on demand with `uv run --with <package>`:
+#   tinytuya         Hinen PS3000 Tuya LAN discovery, status, and writes
+#   micloud          One-time Xiaomi account token bootstrap
+#   bleak            Optional BLE advertisement/GATT reads
+#   python-zeroconf  Optional mDNS discovery

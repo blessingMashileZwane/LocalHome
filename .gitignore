@@ -1,0 +1,35 @@
+# Android / Flutter
+android-app/.dart_tool/
+android-app/build/
+android-app/.flutter-plugins
+android-app/.flutter-plugins-dependencies
+android-app/.idea/
+android-app/*.iml
+android-app/android/.gradle/
+android-app/android/.cxx/
+android-app/android/.kotlin/
+android-app/android/build/
+android-app/android/app/build/
+android-app/android/local.properties
+android-app/android/*.iml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local secrets (device tokens, LAN passwords); keep them outside the repo too
+*.env
+
+# Local agent/tooling configuration
+.agents/
+.cursor/
+.commandcode/
+
+# Local-only home infrastructure (not part of LocalHome)
+pi-stack/
+
+# OS / editor
+.DS_Store
+.vscode/

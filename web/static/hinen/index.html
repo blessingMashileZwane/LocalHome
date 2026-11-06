@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LocalHome · Hinen PS300</title>
+  <link rel="stylesheet" href="/hinen/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">LocalHome</p>
+      <h1>Hinen PS300</h1>
+    </div>
+    <div class="badges">
+      <span class="badge badge-ok">Tuya LAN 3.4</span>
+      <span class="badge">Read-only</span>
+      <span class="badge badge-muted">No cloud</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="notice" role="note">
+      <strong>Local discovery only.</strong> No control is exposed: this is a
+      mains-power device. The local key is used for this request only unless it is
+      already loaded from <code>~/.config/localhome-hinen.env</code>.
+    </section>
+
+    <section class="card">
+      <h2>Device</h2>
+      <form id="device-form" autocomplete="off">
+        <label>
+          Private IPv4
+          <input id="ip" name="ip" inputmode="decimal" placeholder="e.g. 192.168.1.50" required>
+        </label>
+        <label>
+          Tuya local key <span class="hint">(16 characters; not stored)</span>
+          <input id="key" name="key" type="password" maxlength="16" autocomplete="off" spellcheck="false">
+        </label>
+        <div class="actions">
+          <button id="find" type="button">Find Tuya device</button>
+          <button id="check" type="button">Check LAN</button>
+          <button id="status" type="button" class="primary">Read status</button>
+          <button id="ble" type="button">Scan BLE</button>
+        </div>
+      </form>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+      <p id="config" class="muted"></p>
+    </section>
+
+    <section class="card">
+      <h2>Discovery</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Address</th><th>Product key</th><th>Version</th><th>Active</th><th>Encrypted</th><th>Device</th></tr>
+          </thead>
+          <tbody id="devices">
+            <tr><td colspan="6" class="empty">Not scanned yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>LAN check</h2>
+      <div id="lan" class="grid">
+        <p class="empty">Check the station's local services.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Read-only data points</h2>
+      <p class="muted">
+        Raw Tuya DPs. Mapping to battery, power, ports, and temperature is
+        pending; compare the values with the station display.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>DP</th><th>Value</th></tr></thead>
+          <tbody id="dps">
+            <tr><td colspan="2" class="empty">A local key is required to read DPs.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p id="received" class="muted"></p>
+    </section>
+
+    <section class="card">
+      <h2>BLE (experimental)</h2>
+      <p class="muted">
+        The station reports over Wi-Fi/cloud; BLE may be
+        provisioning-only. This scan only reads advertisements.
+      </p>
+      <div id="ble-result">
+        <p class="empty">No BLE scan yet.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>LocalHome · private network only · no runtime cloud · no control writes.</p>
+  </footer>
+
+  <script src="/hinen/app.js"></script>
+</body>
+</html>

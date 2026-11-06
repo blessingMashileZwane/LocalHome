@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LocalHome · Air purifier</title>
+    <link rel="stylesheet" href="/purifier/style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>LocalHome</h1>
+        <p>Xiaomi air purifier · local LAN · no cloud</p>
+      </header>
+
+      <section class="card">
+        <h2>Device</h2>
+        <div class="fields">
+          <label>
+            Private IPv4
+            <input id="ip" inputmode="decimal" placeholder="192.168.1.50" />
+          </label>
+          <label>
+            Token
+            <input
+              id="token"
+              type="password"
+              autocomplete="off"
+              placeholder="not stored"
+            />
+          </label>
+          <label>
+            &nbsp;
+            <button id="connectBtn" type="button">Connect / refresh</button>
+          </label>
+        </div>
+        <p class="hint">
+          The token is sent per request and is never stored by this panel. You
+          can also put <code>MIIO_TOKEN</code> in
+          <code>~/.config/localhome-miio.env</code> (mode 600).
+        </p>
+        <p class="hint" id="tokenHint"></p>
+        <p class="state">
+          Model: <strong id="model">—</strong> · Firmware:
+          <strong id="firmware">—</strong> · <span id="updated">—</span>
+        </p>
+        <label class="inline">
+          <input id="autoRefresh" type="checkbox" />
+          Auto-refresh every 15 s while this page is visible
+        </label>
+      </section>
+
+      <p id="message" class="message" role="status"></p>
+
+      <div class="grid">
+        <section class="card">
+          <h2>Status</h2>
+          <dl class="readings" id="readings"></dl>
+        </section>
+
+        <section class="card" id="controls">
+          <h2>Controls</h2>
+
+          <div class="control" data-control="power">
+            <span>Power</span>
+            <div class="row">
+              <button type="button" data-power="true">ON</button>
+              <button type="button" data-power="false">OFF</button>
+            </div>
+          </div>
+
+          <div class="control" data-control="mode">
+            <span>Mode</span>
+            <div class="row">
+              <button type="button" data-mode="0">Auto</button>
+              <button type="button" data-mode="1">Sleep</button>
+              <button type="button" data-mode="2">Favorite</button>
+              <button type="button" data-mode="3">Manual</button>
+            </div>
+          </div>
+
+          <div class="control" data-control="fan_level">
+            <span>Fan level</span>
+            <div class="row">
+              <button type="button" data-fan="1">1</button>
+              <button type="button" data-fan="2">2</button>
+              <button type="button" data-fan="3">3</button>
+            </div>
+          </div>
+
+          <div class="control" data-control="favorite_level">
+            <span>Favorite level</span>
+            <div class="row">
+              <input id="favorite" type="range" min="0" max="11" step="1" />
+              <output id="favoriteValue">—</output>
+              <button id="favoriteBtn" type="button">Set</button>
+            </div>
+          </div>
+
+          <div class="control" data-control="anion">
+            <span>Anion</span>
+            <div class="row">
+              <button type="button" data-anion="true">ON</button>
+              <button type="button" data-anion="false">OFF</button>
+            </div>
+          </div>
+
+          <div class="control" data-control="child_lock">
+            <span>Child lock</span>
+            <div class="row">
+              <button type="button" data-child="true">ON</button>
+              <button type="button" data-child="false">OFF</button>
+            </div>
+          </div>
+
+          <div class="control" data-control="alarm">
+            <span>Buzzer</span>
+            <div class="row">
+              <button type="button" data-alarm="true">ON</button>
+              <button type="button" data-alarm="false">OFF</button>
+            </div>
+          </div>
+
+          <div class="control" data-control="screen_brightness">
+            <span>Screen brightness</span>
+            <div class="row">
+              <button type="button" data-screen="0">Off</button>
+              <button type="button" data-screen="1">Dim</button>
+              <button type="button" data-screen="2">Normal</button>
+            </div>
+          </div>
+
+          <div class="control" data-control="temperature_unit">
+            <span>Temperature unit</span>
+            <div class="row">
+              <button type="button" data-unit="1">Celsius</button>
+              <button type="button" data-unit="2">Fahrenheit</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="card">
+        <h2>Filter</h2>
+        <p class="state">
+          Life <strong id="filterLife">—</strong> · Used
+          <strong id="filterUsed">—</strong> · Left
+          <strong id="filterLeft">—</strong>
+        </p>
+        <button id="resetFilterBtn" type="button">Reset filter counter</button>
+        <p class="hint">
+          Resetting is irreversible; it clears the filter-used counter on the
+          device. It is confirmed before it is sent.
+        </p>
+      </section>
+
+      <div class="grid">
+        <section class="card">
+          <h2>Recent readings</h2>
+          <button id="refreshHistoryBtn" type="button">Refresh history</button>
+          <ul id="history" class="history"></ul>
+          <p class="hint">
+            Readings are recorded on this host only when the panel polls the
+            purifier.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>Discovery</h2>
+          <button id="discoverBtn" type="button">Find purifiers</button>
+          <ul id="discovered" class="history"></ul>
+          <p class="hint">
+            Broadcast discovery is unauthenticated and may be blocked by guest
+            Wi-Fi or AP isolation. Manual IP entry is the primary path.
+          </p>
+        </section>
+      </div>
+    </main>
+    <script src="/purifier/app.js"></script>
+  </body>
+</html>
